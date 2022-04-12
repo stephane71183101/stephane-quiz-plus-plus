@@ -96,7 +96,7 @@ function evaluateQuestions() {
     ?>
 
     <div>
-        <div class="container-fluid bg-secondary text-light pt-3 pb-3 ">
+    <div class="container-fluid text-secondary pt-3 pb-3">
             <div class="container">
                 <div class="row">
                     <div class="col-1"></div>
@@ -118,7 +118,7 @@ function evaluateQuestions() {
                                     <input type="hidden" name="lastPageID" value="question-01">
                                     <input type="hidden" id="achievedPoints" name="achievedPoints">
                                     <p id="validation-warning" class="warning"></p>
-                                    <button type="submit" class="btn btn-outline-danger buttons">Noch einmal spielen...</button>
+                                    <button type="submit" class="btn btn-outline-danger buttons">Neu spielen!</button>
                                 </div>
                             </div>
                             <div class="col-1"></div>

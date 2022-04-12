@@ -29,19 +29,19 @@
 <main>
 <?php //echo "echo php"; ?>
     <div>
-        <div class="container-fluid bg-secondary text-light pt-3 pb-3 ">
+    <div class="container-fluid text-secondary pt-3 pb-3">
             <div class="container">
                 <div class="row">
                     <div class="col-1"></div>
                     <div class="col-10">
-                        <h4 id="questionTitle">Im Quiz werden dir Multiple-Choice-Fragen gestellt. Manche Fragen können mehrere richtige Antworten haben. Bist bereit für die erste Frage?</h4>
+                        <h4 id="questionTitle">Im Quiz werden dir Redewendung-Fragen gestellt. Manche Fragen können mehrere richtige Antworten haben. Bist du bereit?</h4>
                     </div>
                     <div class="col-1"></div>
                 </div>
             </div>
         </div>
         <div class="container text-secondary h6 mt-3">
-            <form action="questions.php" method="post" onsubmit="return validateQuestion();">       
+            <form action="questions-01.php" method="post" onsubmit="return validateQuestion();">       
                 <div class="row">
                     <div class="container">
                         <div class="row">

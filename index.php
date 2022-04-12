@@ -11,22 +11,30 @@
     <script src="js/main.js"></script>
 </head>
 <body>
+
 <header>
-    <div class="container-fluid">You're playing Quiz++</div>
+    <div class="container-fluid text-secondary">
+        <div class="container">
+            <div class="row">
+                <div class="col-1"></div>
+                    <div class="col-10">
+                        <h1>Quiz++</h1>
+                    </div>
+                <div class="col-1"></div>
+            </div>
+        </div>
+    </div>
 </header>
-<main>
-<?php
-echo "Hello, we are starting to work with Databases and PHP PDO!";
-?>
 
 <main>
+<?php //echo "echo php"; ?>
     <div>
-        <div class="container-fluid bg-secondary text-light mt-3">
+        <div class="container-fluid bg-secondary text-light pt-3 pb-3 ">
             <div class="container">
                 <div class="row">
                     <div class="col-1"></div>
                     <div class="col-10">
-                        <h3 id="questionTitle">First question</h3>
+                        <h3 id="questionTitle">Erste Frage</h3>
                         <h6 id="questionWording">Du bist neu in der Schweiz und hast Papierkram zu erledigen. Wonach erkundigt sich das Amt, wenn es fragt: "Werden Sie betrieben?"<h6>
                     </div>
                     <div class="col-1"></div>
@@ -76,7 +84,7 @@ echo "Hello, we are starting to work with Databases and PHP PDO!";
         </div>
     </div>
 </main>
-</main>
+
 <footer>
 </footer>
 </body>

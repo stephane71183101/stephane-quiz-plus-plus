@@ -1,15 +1,5 @@
 <?php
-session_start();
-
-$currentQuestionsIndex=0;
-
-if  (isset($_POST["lastQuestionIndex"])) {
-    $lastQuestionIndex=$_POST["lastQuestionIndex"];
-
-    if  (isset($_POST["nextQuestionIndex"])) {
-        $currentQuestionsIndex=$_POST["nextQuestionIndex"];
-    }
-}
+//session_start();
 
 /*
 if  (isset($_POST["lastPageID"])) {

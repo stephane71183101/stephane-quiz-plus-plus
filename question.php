@@ -1,7 +1,17 @@
-<?php include "includes/data-collector.php"; ?>
+<?php //include "includes/data-collector.php"; ?>
 <?php include "includes/head.php"; ?>
 <?php include "includes/header.php"; ?>
 <?php 
+$currentQuestionsIndex=0;
+
+if  (isset($_POST["lastQuestionIndex"])) {
+    $lastQuestionIndex=$_POST["lastQuestionIndex"];
+
+    if  (isset($_POST["nextQuestionIndex"])) {
+        $currentQuestionsIndex=$_POST["nextQuestionIndex"];
+    }
+}
+
     $dbHost = getenv('DB_HOST');
     $dbName = getenv('DB_NAME');
     $dbUser = getenv('DB_USER');
@@ -14,20 +24,20 @@
     $query=$dbConnection->query("SELECT * from Questions");
     $questions=$query->fetchAll(PDO::FETCH_ASSOC);
 
-    for ($q=0; $q < count(questions); $q++) {
+    for ($q=0; $q < count($questions); $q++) {
         $question=$questions[$q];
-        $ubQuery=$dbConnection->prepare("SELECT * from Answers where Answers.questionID=?");
-        $subQuery->bindvalue(1, $question['id']);
+        $subQuery=$dbConnection->prepare("SELECT * from Answers where Answers.questionID=?");
+        $subQuery->bindValue(1, $question['ID']);
         $subQuery->execute();
-        $answers=$subQuery->fetchAll(PDO::FETCH-ASSOC);
+        $answers=$subQuery->fetchAll(PDO::FETCH_ASSOC);
         $questions[$q]['answers']=$answers;
     }
     $_SESSION['quizData']=$questions;
-    echo "<pre>";
-    print_r($_SESSION['quizData']);
-    echo "</pre>";
+    //echo "<pre>";
+    //print_r($_SESSION['quizData']);
+    //echo "</pre>";
 
-    /*
+    /* Note: original code befor changeover with Chris
     foreach($questions as $key => $question) {
         $subQuery=$dbConnection->prepare("SELECT * from Answers where Answers.QuestionID= ?");
         $subQuery->bindValue(1, $question['ID']);

@@ -1,32 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/style.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/main.js"></script>
-</head>
-<body>
+<?php include "includes/head.php"; ?>
+<?php include "includes/header.php";?>
 
-<header>
-    <div class="container-fluid text-secondary">
-        <div class="container">
-            <div class="row">
-                <div class="col-1"></div>
-                    <div class="col-10">
-                        <h1>Quiz++</h1>
-                    </div>
-                <div class="col-1"></div>
-            </div>
-        </div>
-    </div>
-</header>
-
-<main>
 <?php
 // data collector
 session_start();
@@ -128,10 +102,4 @@ function evaluateQuestions() {
             </form>
         </div>
     </div>
-</main>
-
-<footer>
-</footer>
-
-</body>
-</html>
+<?php include "includes/footer.php"; ?>

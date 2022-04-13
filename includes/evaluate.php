@@ -33,7 +33,7 @@ function evaluateQuestions() {
     ];
 
     echo "<pre>";
-    print_r($_SESSION);
+    //print_r($_SESSION);
     echo "</pre>";
     
     $totalPoints = 0;

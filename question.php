@@ -57,8 +57,8 @@ if  (isset($_POST["lastQuestionIndex"])) {
                 <div class="col-1"></div>
                 <div class="col-10">
 
-                <h4 id="questionWording">Du bist neu in der Schweiz und hast Papierkram zu erledigen. Wonach erkundigt sich das Amt, wenn es fragt: "Werden Sie betrieben?"<h4>
-               
+                <h5 class="text-primary">Frage <?php echo $currentQuestionsIndex+1; ?><h5>
+                <h4 id="questionWording"><?php echo $questions[$currentQuestionsIndex]['Text']; ?><h4>
             </div>
                 <div class="col-1"></div>
             </div>
@@ -71,20 +71,42 @@ if  (isset($_POST["lastQuestionIndex"])) {
                 <div class="col-10" id="answerPanel">
                     <div class="form-check">
                         <input type="radio" class="form-check-input" id="single-choice-1" name="single-choice" value="1">
-                        <label class="form-check-label" for="single-choice-1"><p>Haben Sie Schulden?</p></label>
+                        <label class="form-check-label" for="single-choice-1">
+                        <?php
+                            $answers=$questions[$currentQuestionsIndex]['answers'];
+                            //$answer=$answers[0];
+                            //echo $answer['answer'];
+                            echo $answers[0]['Text'];
+                          ?>
+                        </label>
                     </div>
                     <div class="form-check">
                         <input type="radio" class="form-check-input" id="single-choice-2"name="single-choice" value="0">
-                        <label class="form-check-label" for="single-choice-2"><p>Sind Sie selbstständig?</p></label>
+                        <label class="form-check-label" for="single-choice-2">
+                        <?php
+                            $answers=$questions[$currentQuestionsIndex]['answers'];
+                            echo $answers[1]['Text'];
+                          ?>
+                        </label>
                     </div>
 
                     <div class="form-check">
                         <input type="radio" class="form-check-input" id="single-choice-3" name="single-choice" value="0">
-                        <label class="form-check-label" for="single-choice-3"><p>Haben Sie eine Festanstellung?</p></label>
+                        <label class="form-check-label" for="single-choice-3"> 
+                        <?php
+                            $answers=$questions[$currentQuestionsIndex]['answers'];
+                            echo $answers[2]['Text'];
+                        ?>
+                        </label>
                     </div>
                     <div class="form-check">
                         <input type="radio" class="form-check-input" id="single-choice-4" name="single-choice" value="0">
-                        <label class="form-check-label" for="single-choice-4"><p>Sind sie haftpflichtversichert?</p></label>
+                        <label class="form-check-label" for="single-choice-4"><p> 
+                        <?php
+                            $answers=$questions[$currentQuestionsIndex]['answers'];
+                            echo $answers[3]['Text'];
+                        ?>
+                        </label>
                     </div>
                     </div> 
                     <div class="col-1"></div>
@@ -97,7 +119,7 @@ if  (isset($_POST["lastQuestionIndex"])) {
                                 <input type="hidden" name="lastPageID" value="question-01">
                                 <input type="hidden" id="achievedPoints" name="achievedPoints">
                                 <p id="validation-warning" class="warning"></p>
-                                <button type="submit" class="btn btn-outline-danger buttons">Ergebnis berechnen...</button>
+                                <button type="submit" class="btn btn-outline-primary buttons">Ergebnis berechnen...</button>
                             </div>
                         </div>
                         <div class="col-1"></div>

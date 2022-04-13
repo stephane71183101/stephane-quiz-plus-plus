@@ -21,7 +21,7 @@
                     <div class="row">
                         <div class="col-1"></div>
                         <div class="col-10">
-                            <button type="submit" href="index.php" class="btn btn-outline-danger buttons">Neu spielen!</button>
+                            <button type="submit" href="index.php" class="btn btn-outline-primary buttons">Neu spielen!</button>
                         </div>
                         <div class="col-1"></div>
                     </div>

@@ -24,7 +24,7 @@
                                 <input type="hidden" name="lastPageID" value="question-01">
                                 <input type="hidden" id="achievedPoints" name="achievedPoints">
                                 <p id="validation-warning" class="warning"></p>
-                                <button type="submit" class="btn btn-outline-danger buttons">Ja!</button>
+                                <button type="submit" class="btn btn-outline-primary buttons">Ja!</button>
                             </div>
                         </div>
                         <div class="col-1"></div>

@@ -33,6 +33,7 @@ if  (isset($_POST["lastQuestionIndex"])) {
         $questions[$q]['answers']=$answers;
     }
     $_SESSION['quizData']=$questions;
+    
     //echo "<pre>";
     //print_r($_SESSION['quizData']);
     //echo "</pre>";
@@ -76,7 +77,7 @@ if  (isset($_POST["lastQuestionIndex"])) {
                             $answers=$questions[$currentQuestionsIndex]['answers'];
                             //$answer=$answers[0];
                             //echo $answer['answer'];
-                            echo $answers[0]['Text'];
+                            echo $answers[0]['Text']; //This line correspond to the both previous lines
                           ?>
                         </label>
                     </div>

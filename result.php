@@ -1,11 +1,8 @@
-<?php include "includes/head.php"; ?>
-<?php include "includes/header.php";?>
-
 <?php
-// data collector
-session_start();
-$lastPageID = $_POST["lastPageID"];
-$_SESSION[$lastPageID] = $_POST;
+include "includes/head.php";
+include "includes/header.php";
+include "includes/data-collector.php";
+include "includes/evaluate.php";
 
 printResult();
 

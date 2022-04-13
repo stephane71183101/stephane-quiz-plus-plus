@@ -1,8 +1,8 @@
-<?php include "includes/head.php"; ?>
-<?php include "includes/data-collector.php";?>
-<?php include "includes/header.php";?>
-
 <?php
+include "includes/head.php";
+include "includes/data-collector.php";
+include "includes/header.php";
+
     $dbHost = getenv('DB_HOST');
     $dbName = getenv('DB_NAME');
     $dbUser = getenv('DB_USER');
@@ -26,7 +26,6 @@
         //print "</pre>";
 }
 ?>
-
 <div>
     <div class="container-fluid text-secondary pt-3 pb-3">
         <div class="container">
@@ -46,7 +45,6 @@
             <div class="row">
                 <div class="col-1"></div>
                 <div class="col-10" id="answerPanel">
-
                     <div class="form-check">
                         <input type="radio" class="form-check-input" id="single-choice-1" name="single-choice" value="1">
                         <label class="form-check-label" for="single-choice-1"><p>Haben Sie Schulden?</p></label>
@@ -64,7 +62,6 @@
                         <input type="radio" class="form-check-input" id="single-choice-4" name="single-choice" value="0">
                         <label class="form-check-label" for="single-choice-4"><p>Sind sie haftpflichtversichert?</p></label>
                     </div>
-
                     </div> 
                     <div class="col-1"></div>
                 </div>

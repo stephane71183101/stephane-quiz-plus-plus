@@ -1,31 +1,24 @@
 function validateQuestion()  {
-    // Holle die Liste aller ausgewählter Radioboxen (checked).
- 
     let radioboxes = document.querySelectorAll('input[type=radio]:checked');
     
     if (radioboxes.length === 0) {
-        // Die liste der Radioboxen ist leer - es wurde nichts ausgewählt.
         setWarning("Bitte wähle eine Antwort aus!");
-        return false; // Submit Aktion wird gestopt.
+        return false;
     }
 
-    // Nach dem Auswahl einer Antwort: die erreichte Punkte zusammenzählen.
-    let achievedPoints = 0; // Summe aller erreichten Punkte pro Frage.
-    let points; // Anzahl der Punkte einer einzelnen Antwort.
-    // oder kürzer als Liste: let achivedPoints = 0, points;
-
+    let achievedPoints = 0;
     for (let i = 0; i < radioboxes.length; i++) {
-        points = radioboxes[i].value;  //Als "value" kommt ein String.
-        points = parseInt(points);  // String in ganzze Zahl konvertieren.
+        points = radioboxes[i].value; 
+        points = parseInt(points);
 
-        // Für richtige Antwort: points === 1,
-        //     falsche Antwort: points === 0.
-        achievedPoints = achievedPoints + points; // oder kürzer: achievedPoints += points;
+        achievedPoints = achievedPoints + points;
 
         }
-        alert (achievedPoints);
-
-        // schreibe die erreichte Punktzahl ins Hidden Field "achivedPoints".
+        //alert (achievedPoints);
         let hiddenField = document.getElementById("achievedPoints");
         hiddenField.value = achievedPoints;
+}
+function setWarning(Text) {
+    let warningElement=document.getElementById("validation-warning"); //is thtat the line's end?
+    warningElement.innerText = text;
 }

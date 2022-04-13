@@ -2,13 +2,13 @@
 <?php include "includes/head.php"; ?>
 <?php include "includes/header.php"; ?>
 <?php 
-$currentQuestionsIndex=0;
+$currentQuestionsIndex = 0;
 
-if  (isset($_POST["lastQuestionIndex"])) {
-    $lastQuestionIndex=$_POST["lastQuestionIndex"];
+if  (isset($_POST['lastQuestionIndex'])) {
+    $lastQuestionIndex = $_POST['lastQuestionIndex'];
 
-    if  (isset($_POST["nextQuestionIndex"])) {
-        $currentQuestionsIndex=$_POST["nextQuestionIndex"];
+    if  (isset($_POST['nextQuestionIndex'])) {
+        $currentQuestionsIndex = $_POST['nextQuestionIndex'];
     }
 }
 
@@ -24,33 +24,21 @@ if  (isset($_POST["lastQuestionIndex"])) {
     $query=$dbConnection->query("SELECT * from Questions");
     $questions=$query->fetchAll(PDO::FETCH_ASSOC);
 
-    for ($q=0; $q < count($questions); $q++) {
-        $question=$questions[$q];
-        $subQuery=$dbConnection->prepare("SELECT * from Answers where Answers.questionID=?");
+    for ($q = 0; $q < count($questions); $q++) {
+        $question = $questions[$q];
+        $subQuery = $dbConnection->prepare("SELECT * from Answers where Answers.questionID=?");
         $subQuery->bindValue(1, $question['ID']);
         $subQuery->execute();
-        $answers=$subQuery->fetchAll(PDO::FETCH_ASSOC);
-        $questions[$q]['answers']=$answers;
+        $answers = $subQuery->fetchAll(PDO::FETCH_ASSOC);
+        $questions[$q]['answers'] = $answers;
     }
-    $_SESSION['quizData']=$questions;
+    $_SESSION['quizData'] = $questions;
     
     //echo "<pre>";
     //print_r($_SESSION['quizData']);
     //echo "</pre>";
-
-    /* Note: original code befor changeover with Chris
-    foreach($questions as $key => $question) {
-        $subQuery=$dbConnection->prepare("SELECT * from Answers where Answers.QuestionID= ?");
-        $subQuery->bindValue(1, $question['ID']);
-        $subQuery->execute();
-        $answers=$subQuery->fetchAll(PDO::FETCH_ASSOC);
-        $question[$key]['answers']=$answers;
-        echo "<pre>";
-        print_r($question);
-        echo "</pre>";
-    }
-    */
 ?>
+
 <div>
     <div class="container-fluid text-secondary pt-3 pb-3">
         <div class="container">
@@ -58,7 +46,7 @@ if  (isset($_POST["lastQuestionIndex"])) {
                 <div class="col-1"></div>
                 <div class="col-10">
 
-                <h5 class="text-primary">Frage <?php echo $currentQuestionsIndex+1; ?><h5>
+                <h5 class="text-primary">Frage <?php echo $currentQuestionsIndex + 1; ?><h5>
                 <h4 id="questionWording"><?php echo $questions[$currentQuestionsIndex]['Text']; ?><h4>
             </div>
                 <div class="col-1"></div>
@@ -66,7 +54,8 @@ if  (isset($_POST["lastQuestionIndex"])) {
         </div>
     </div>
     <div class="container text-secondary h6 mt-3">
-        <form action="result.php" method="post" onsubmit="return validateQuestion();">       
+        <form method="post">
+        <!--<form method="post" onsubmit="return validateQuestion();">-->    
             <div class="row">
                 <div class="col-1"></div>
                 <div class="col-10" id="answerPanel">
@@ -77,7 +66,7 @@ if  (isset($_POST["lastQuestionIndex"])) {
                             $answers=$questions[$currentQuestionsIndex]['answers'];
                             //$answer=$answers[0];
                             //echo $answer['answer'];
-                            echo $answers[0]['Text']; //This line correspond to the both previous lines
+                            echo $answers[0]['Text']; //This line corresponds to the both previous lines.
                           ?>
                         </label>
                     </div>
@@ -90,7 +79,6 @@ if  (isset($_POST["lastQuestionIndex"])) {
                           ?>
                         </label>
                     </div>
-
                     <div class="form-check">
                         <input type="radio" class="form-check-input" id="single-choice-3" name="single-choice" value="0">
                         <label class="form-check-label" for="single-choice-3"> 
@@ -112,15 +100,15 @@ if  (isset($_POST["lastQuestionIndex"])) {
                     </div> 
                     <div class="col-1"></div>
                 </div>
-                <div class="container">
+                <div class="container pt-3">
                     <div class="row">
                         <div class="col-1"></div>
                         <div class="col-10">
                             <div>
-                                <input type="hidden" name="lastPageID" value="question-01">
-                                <input type="hidden" id="achievedPoints" name="achievedPoints">
-                                <p id="validation-warning" class="warning"></p>
-                                <button type="submit" class="btn btn-outline-primary buttons">Ergebnis berechnen...</button>
+                                <input type="hidden" name="lasQuestionIndex" value="<?php echo $currentQuestionsIndex; ?>">
+                                <input type="hidden" name="nextQuestionIndex" value="<?php echo $currentQuestionsIndex+1; ?>">
+                                <!--<p id="validation-warning" class="warning"></p>-->
+                                <button type="submit" class="btn btn-outline-primary buttons">Weiter...</button>
                             </div>
                         </div>
                         <div class="col-1"></div>

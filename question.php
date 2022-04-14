@@ -2,13 +2,13 @@
 <?php include "includes/head.php"; ?>
 <?php include "includes/header.php"; ?>
 <?php 
-$currentQuestionsIndex = 0;
+$currentQuestionIndex = 0;
 
 if  (isset($_POST['lastQuestionIndex'])) {
     $lastQuestionIndex = $_POST['lastQuestionIndex'];
 
     if  (isset($_POST['nextQuestionIndex'])) {
-        $currentQuestionsIndex = $_POST['nextQuestionIndex'];
+        $currentQuestionIndex = $_POST['nextQuestionIndex'];
     }
 }
 
@@ -30,7 +30,7 @@ if  (isset($_POST['lastQuestionIndex'])) {
         $subQuery->bindValue(1, $question['ID']);
         $subQuery->execute();
         $answers = $subQuery->fetchAll(PDO::FETCH_ASSOC);
-        $questions[$q]['answers'] = $answers;
+        $questions[$q]['Text'] = $answers;
     }
     $_SESSION['quizData'] = $questions;
     
@@ -46,8 +46,8 @@ if  (isset($_POST['lastQuestionIndex'])) {
                 <div class="col-1"></div>
                 <div class="col-10">
 
-                <h5 class="text-primary">Frage <?php echo $currentQuestionsIndex + 1; ?><h5>
-                <h4 id="questionWording"><?php echo $questions[$currentQuestionsIndex]['Text']; ?><h4>
+                <h5 class="text-primary">Frage <?php echo $currentQuestionIndex + 1; ?><h5>
+                <h4 id="questionWording"><?php echo $questions[$currentQuestionIndex]['Text']; ?><h4>
             </div>
                 <div class="col-1"></div>
             </div>
@@ -55,7 +55,28 @@ if  (isset($_POST['lastQuestionIndex'])) {
     </div>
     <div class="container text-secondary h6 mt-3">
         <form method="post">
-        <!--<form method="post" onsubmit="return validateQuestion();">-->    
+        <!--<form method="post" onsubmit="return validateQuestion();">-->
+            
+            <!-- Beginn changeover for implamentation of question's carousel -->
+            <?php
+                $answers = $questions[$currentQuestionIndex]['Text'];
+
+                for ($a = 0; $a < count($answers); $a++) {
+                    echo '<div class="form-check">';
+
+                    $isCorrect = $answers[$a]['IsCorrectAnswer'];
+                    echo '<input class="form-check-input" type="checkbox" value="' . $isCorrect . '" id="flexCheckDefault">';
+                    echo '<label class="form-check-label" for="flexCheckDefault">';
+
+                    $answers = $questions[$currentQuestionIndex]['Text'];
+                    echo $answers[$a]['Text'];
+
+                    echo '</label>';
+                    echo '</div>';
+                }
+            ?>
+            <!-- End changeover for implamentation of question's carousel -->
+
             <div class="row">
                 <div class="col-1"></div>
                 <div class="col-10" id="answerPanel">
@@ -63,7 +84,7 @@ if  (isset($_POST['lastQuestionIndex'])) {
                         <input type="radio" class="form-check-input" id="single-choice-1" name="single-choice" value="1">
                         <label class="form-check-label" for="single-choice-1">
                         <?php
-                            $answers=$questions[$currentQuestionsIndex]['answers'];
+                            $answers=$questions[$currentQuestionIndex]['Text'];
                             //$answer=$answers[0];
                             //echo $answer['answer'];
                             echo $answers[0]['Text']; //This line corresponds to the both previous lines.
@@ -74,7 +95,7 @@ if  (isset($_POST['lastQuestionIndex'])) {
                         <input type="radio" class="form-check-input" id="single-choice-2"name="single-choice" value="0">
                         <label class="form-check-label" for="single-choice-2">
                         <?php
-                            $answers=$questions[$currentQuestionsIndex]['answers'];
+                            $answers=$questions[$currentQuestionIndex]['Text'];
                             echo $answers[1]['Text'];
                           ?>
                         </label>
@@ -83,7 +104,7 @@ if  (isset($_POST['lastQuestionIndex'])) {
                         <input type="radio" class="form-check-input" id="single-choice-3" name="single-choice" value="0">
                         <label class="form-check-label" for="single-choice-3"> 
                         <?php
-                            $answers=$questions[$currentQuestionsIndex]['answers'];
+                            $answers=$questions[$currentQuestionIndex]['Text'];
                             echo $answers[2]['Text'];
                         ?>
                         </label>
@@ -92,7 +113,7 @@ if  (isset($_POST['lastQuestionIndex'])) {
                         <input type="radio" class="form-check-input" id="single-choice-4" name="single-choice" value="0">
                         <label class="form-check-label" for="single-choice-4"><p> 
                         <?php
-                            $answers=$questions[$currentQuestionsIndex]['answers'];
+                            $answers=$questions[$currentQuestionIndex]['Text'];
                             echo $answers[3]['Text'];
                         ?>
                         </label>
@@ -105,8 +126,9 @@ if  (isset($_POST['lastQuestionIndex'])) {
                         <div class="col-1"></div>
                         <div class="col-10">
                             <div>
-                                <input type="hidden" name="lasQuestionIndex" value="<?php echo $currentQuestionsIndex; ?>">
-                                <input type="hidden" name="nextQuestionIndex" value="<?php echo $currentQuestionsIndex+1; ?>">
+                                <input type="hidden" name="lasQuestionIndex" value="<?php echo $currentQuestionIndex; ?>">
+                                <input type="hidden" name="nextQuestionIndex" value="<?php $currentQuestionIndex++;
+                                echo $currentQuestionIndex; ?>">
                                 <!--<p id="validation-warning" class="warning"></p>-->
                                 <button type="submit" class="btn btn-outline-primary buttons">Weiter...</button>
                             </div>

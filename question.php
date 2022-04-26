@@ -1,9 +1,11 @@
 <?php //include "includes/data-collector.php"; ?>
+<?php include "includes/db.php"; ?>
 <?php include "includes/head.php"; ?>
 <?php include "includes/header.php"; ?>
-<?php 
+<?php
 $currentQuestionIndex = 0;
 
+// Evaluate data in $_POST variable.
 if  (isset($_POST['lastQuestionIndex'])) {
     $lastQuestionIndex = $_POST['lastQuestionIndex'];
 
@@ -12,31 +14,31 @@ if  (isset($_POST['lastQuestionIndex'])) {
     }
 }
 
-    $dbHost = getenv('DB_HOST');
-    $dbName = getenv('DB_NAME');
-    $dbUser = getenv('DB_USER');
-    $dbPassword = getenv('DB_PASSWORD');
+// Check if $_SESSION['questions'] exists.
+if (isset($_SESSION['questions'])) {
+echo 'questions do not exist in session <br>';
+    $questions = $_SESSION['questions'];
+}
+else {
+echo 'questions exist in session <br>';
+    // Get quiz data from database using includes/db.php ...
+    $questions = getQuestions();
 
-    //echo "dbHost=$dbHost, dbName=$dbName, dbUser=$dbUser; dbPassword=$dbPassword<br>";
-    $dbConnection = new PDO("mysql:host=$dbHost;dbname=$dbName;charset=utf8mb4", $dbUser, $dbPassword);
-    $dbConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // ... and save that data in $_SESSION.
+    $_SESSION['questions'] = $questions;
+}
 
-    $query=$dbConnection->query("SELECT * from Questions");
-    $questions=$query->fetchAll(PDO::FETCH_ASSOC);
+// Get quiz data using includes/db.php
+$questions = getQuestions();
 
-    for ($q = 0; $q < count($questions); $q++) {
-        $question = $questions[$q];
-        $subQuery = $dbConnection->prepare("SELECT * from Answers where Answers.questionID=?");
-        $subQuery->bindValue(1, $question['ID']);
-        $subQuery->execute();
-        $answers = $subQuery->fetchAll(PDO::FETCH_ASSOC);
-        $questions[$q]['Text'] = $answers;
-    }
-    $_SESSION['quizData'] = $questions;
-    
-    //echo "<pre>";
-    //print_r($_SESSION['quizData']);
-    //echo "</pre>";
+// And put questions and answers data int PHP session.
+// $_SESSION['quizData'] = $questions;
+
+
+//echo "<pre>";
+//print_r($_SESSION['quizData']);
+//echo "</pre>";
+
 ?>
 
 <div>

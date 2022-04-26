@@ -76,7 +76,8 @@ if  (isset($_POST['lastQuestionIndex'])) {
                 }
             ?>
             <!-- End changeover for implamentation of question's carousel -->
-
+            
+            <!-- Code befor implamentaton of question's carousel
             <div class="row">
                 <div class="col-1"></div>
                 <div class="col-10" id="answerPanel">
@@ -121,6 +122,7 @@ if  (isset($_POST['lastQuestionIndex'])) {
                     </div> 
                     <div class="col-1"></div>
                 </div>
+                -->
                 <div class="container pt-3">
                     <div class="row">
                         <div class="col-1"></div>

@@ -15,7 +15,8 @@
         </div>
     </div>
     <div class="container text-secondary h6 mt-3">
-        <form action="question.php" method="post"> <!--<form action="question.php" method="post" onsubmit="return validateQuestion();">  -->     
+        <form action="question.php" method="post">
+        <!--<form action="question.php" method="post" onsubmit="return validateQuestion();">  -->     
             <div class="row">
                 <div class="container">
                     <div class="row">

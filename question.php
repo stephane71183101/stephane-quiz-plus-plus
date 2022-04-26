@@ -17,7 +17,7 @@ if  (isset($_POST['lastQuestionIndex'])) {
 
     if  (isset($_POST['nextQuestionIndex'])) {
         $currentQuestionIndex = $_POST['nextQuestionIndex'];
-    }
+    }   
 }
 
 // Check if $_SESSION['questions'] exists.
@@ -41,9 +41,9 @@ $questions = getQuestions();
 // And put questions and answers data int PHP session.
 // $_SESSION['questions'] = $questions;
 
-// echo "<pre>";
-// print_r($_SESSION['questions']);
-// echo "</pre>";
+echo "<pre>";
+print_r($_SESSION['questions']);
+echo "</pre>";
 ?>
 
 <div>
@@ -64,20 +64,30 @@ $questions = getQuestions();
         <form method="post">
             <?php
                 $answers = $questions[$currentQuestionIndex]['answers'];
+                $Type = $questions[$currentQuestionIndex]['Type'];
 
                 for ($a = 0; $a < count($answers); $a++) {
                     echo '<div class="form-check">';
                     $isCorrect = $answers[$a]['IsCorrectAnswer'];
-                    echo '<input class="form-check-input" type="checkbox" value="' . $isCorrect . '" id="flexCheckDefault">';
-                    echo '<label class="form-check-label" for="flexCheckDefault">';
+                    
+                    if ($Type == 'Multiple') {
+                    // Multiple Choice (checkbox)
+                    echo '<input class="form-check-input" type="checkbox" value="' . $isCorrect . '" id="i-' . $a . '">';
 
-                    echo $answers[$a]['Text'];
-                    echo '</label>';
-                    echo '</div>';
+                    }
+                    else {
+                        // Single choice (radio)
+                        echo '<input class="form-check-input" type="radio" value="' . $isCorrect . '" id="i-' . $a . '">';
+                    }    
+                        
+                        echo '<label class="form-check-label" for="i-' . $a . '">';
+                        echo $answers[$a]['Text'];
+                        echo '</label>';
+                        echo '</div>';
                 }
-            ?>
-      
             
+            ?>
+                  
                 <div class="container pt-3">
                     <div class="row">
                         <div class="col-1"></div>

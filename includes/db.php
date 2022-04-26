@@ -18,10 +18,8 @@ function getQuestions () {
         $subQuery->bindValue(1, $question['ID']);
         $subQuery->execute();
         $answers = $subQuery->fetchAll(PDO::FETCH_ASSOC);
-        $questions[$q]['Text'] = $answers;
+        $questions[$q]['answers'] = $answers;
     }
-
-    $_SESSION['quizData'] = $questions;
 
     return $questions;
 

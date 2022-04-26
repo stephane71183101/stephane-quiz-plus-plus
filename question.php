@@ -1,8 +1,13 @@
-<?php //include "includes/data-collector.php"; ?>
-<?php include "includes/db.php"; ?>
-<?php include "includes/head.php"; ?>
-<?php include "includes/header.php"; ?>
-<?php
+<?php 
+//include "includes/data-collector.php";
+include "includes/db.php";
+
+// Initialize session.
+session_start();
+
+include "includes/head.php";
+include "includes/header.php";
+
 
 $currentQuestionIndex = 0;
 
@@ -17,11 +22,12 @@ if  (isset($_POST['lastQuestionIndex'])) {
 
 // Check if $_SESSION['questions'] exists.
 if (isset($_SESSION['questions'])) {
-echo 'questions exist in session <br>';
+    echo 'questions exist in session <br>';
     $questions = $_SESSION['questions'];
 }
 else {
-echo 'questions do not exist in session <br>';
+    echo 'questions do not exist in session <br>';
+    
     // Get quiz data from database using includes/db.php ...
     $questions = getQuestions();
 
@@ -33,13 +39,11 @@ echo 'questions do not exist in session <br>';
 $questions = getQuestions();
 
 // And put questions and answers data int PHP session.
-// $_SESSION['quizData'] = $questions;
+// $_SESSION['questions'] = $questions;
 
-
-//echo "<pre>";
-//print_r($_SESSION['quizData']);
-//echo "</pre>";
-
+// echo "<pre>";
+// print_r($_SESSION['questions']);
+// echo "</pre>";
 ?>
 
 <div>
@@ -58,35 +62,28 @@ $questions = getQuestions();
     </div>
     <div class="container text-secondary h6 mt-3">
         <form method="post">
-        <!--<form method="post" onsubmit="return validateQuestion();">-->
-            
-            <!-- Beginn changeover for implamentation of question's carousel -->
             <?php
-                $answers = $questions[$currentQuestionIndex]['Text'];
+                $answers = $questions[$currentQuestionIndex]['answers'];
 
                 for ($a = 0; $a < count($answers); $a++) {
                     echo '<div class="form-check">';
-
                     $isCorrect = $answers[$a]['IsCorrectAnswer'];
                     echo '<input class="form-check-input" type="checkbox" value="' . $isCorrect . '" id="flexCheckDefault">';
                     echo '<label class="form-check-label" for="flexCheckDefault">';
 
-                    $answers = $questions[$currentQuestionIndex]['Text'];
                     echo $answers[$a]['Text'];
-
                     echo '</label>';
                     echo '</div>';
                 }
             ?>
-            <!-- End changeover for implamentation of question's carousel -->
-            
+      
             
                 <div class="container pt-3">
                     <div class="row">
                         <div class="col-1"></div>
                         <div class="col-10">
                             <div>
-                                <input type="hidden" name="lasQuestionIndex" value="<?php echo $currentQuestionIndex; ?>">
+                                <input type="hidden" name="lastQuestionIndex" value="<?php echo $currentQuestionIndex; ?>">
                                 <input type="hidden" name="nextQuestionIndex" value="<?php $currentQuestionIndex++;
                                 echo $currentQuestionIndex; ?>">
                                 <!--<p id="validation-warning" class="warning"></p>-->

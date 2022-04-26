@@ -3,6 +3,7 @@
 <?php include "includes/head.php"; ?>
 <?php include "includes/header.php"; ?>
 <?php
+
 $currentQuestionIndex = 0;
 
 // Evaluate data in $_POST variable.
@@ -16,11 +17,11 @@ if  (isset($_POST['lastQuestionIndex'])) {
 
 // Check if $_SESSION['questions'] exists.
 if (isset($_SESSION['questions'])) {
-echo 'questions do not exist in session <br>';
+echo 'questions exist in session <br>';
     $questions = $_SESSION['questions'];
 }
 else {
-echo 'questions exist in session <br>';
+echo 'questions do not exist in session <br>';
     // Get quiz data from database using includes/db.php ...
     $questions = getQuestions();
 
@@ -79,52 +80,7 @@ $questions = getQuestions();
             ?>
             <!-- End changeover for implamentation of question's carousel -->
             
-            <!-- Code befor implamentaton of question's carousel
-            <div class="row">
-                <div class="col-1"></div>
-                <div class="col-10" id="answerPanel">
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" id="single-choice-1" name="single-choice" value="1">
-                        <label class="form-check-label" for="single-choice-1">
-                        <?php
-                            $answers=$questions[$currentQuestionIndex]['Text'];
-                            //$answer=$answers[0];
-                            //echo $answer['answer'];
-                            echo $answers[0]['Text']; //This line corresponds to the both previous lines.
-                          ?>
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" id="single-choice-2"name="single-choice" value="0">
-                        <label class="form-check-label" for="single-choice-2">
-                        <?php
-                            $answers=$questions[$currentQuestionIndex]['Text'];
-                            echo $answers[1]['Text'];
-                          ?>
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" id="single-choice-3" name="single-choice" value="0">
-                        <label class="form-check-label" for="single-choice-3"> 
-                        <?php
-                            $answers=$questions[$currentQuestionIndex]['Text'];
-                            echo $answers[2]['Text'];
-                        ?>
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input type="radio" class="form-check-input" id="single-choice-4" name="single-choice" value="0">
-                        <label class="form-check-label" for="single-choice-4"><p> 
-                        <?php
-                            $answers=$questions[$currentQuestionIndex]['Text'];
-                            echo $answers[3]['Text'];
-                        ?>
-                        </label>
-                    </div>
-                    </div> 
-                    <div class="col-1"></div>
-                </div>
-                -->
+            
                 <div class="container pt-3">
                     <div class="row">
                         <div class="col-1"></div>

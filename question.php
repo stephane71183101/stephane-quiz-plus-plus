@@ -22,11 +22,11 @@ if  (isset($_POST['lastQuestionIndex'])) {
 
 // Check if $_SESSION['questions'] exists.
 if (isset($_SESSION['questions'])) {
-    echo 'questions exist in session <br>';
+    // echo 'questions exist in session <br>';
     $questions = $_SESSION['questions'];
 }
 else {
-    echo 'questions do not exist in session <br>';
+    // echo 'questions do not exist in session <br>';
     
     // Get quiz data from database using includes/db.php ...
     $questions = getQuestions();

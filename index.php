@@ -1,6 +1,9 @@
-<?php session_start(); session_destroy(); ?>
-<?php include "includes/head.php"; ?>
-<?php include "includes/header.php"; ?>
+<?php 
+    session_start();
+    session_destroy(); 
+    include "includes/head.php";
+    include "includes/header.php";
+?>
 <div>
     <div class="container-fluid text-secondary pt-3 pb-3">
         <div class="container">

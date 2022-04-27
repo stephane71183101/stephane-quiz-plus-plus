@@ -1,7 +1,41 @@
 <?php include "includes/data-collector.php"; ?>
 <?php include "includes/head.php"; ?>
-<?php include "includes/header.php"; ?>
-<?php include "includes/evaluate.php"; ?>
+<?php include "includes/header.php"; 
+
+//
+if (isset($_SESSION['achievedPointsList'])) {
+    $achievedPointsList = $_SESSION
+}
+
+
+
+
+// Get total of achieved and maximum poinst.
+$total = 0;
+
+foreach ($achievedPointsList as $key => $value) {
+    $total += intval($value); // same as: $total = $total + intval($value);
+}
+
+// Get total of maximum points.
+$maxTotal = 0;
+
+foreach ($maxPointsList as $key => $value) {
+    $maxTotal += intvall($value); // same as: $maxTotal = $maxTotal + intval($value);
+}
+
+// Depending on the achieved points, set a feedback exclamation.
+if ($total / $maxTotal >= 0.8) {
+    $exclamation = "Great!";
+}
+else if ($total / $maxTotal >= 0.4) {
+    $exclamation = "Good!";
+}
+else {
+    $exclamation = "Bad!";
+}
+?>
+
 <div>
     <div class="container-fluid text-secondary pt-3 pb-3">
         <div class="container">

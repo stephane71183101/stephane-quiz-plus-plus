@@ -1,13 +1,6 @@
 <?php 
-//include "includes/data-collector.php";
+include "includes/data-collector.php";
 include "includes/db.php";
-
-// Initialize session.
-session_start();
-
-include "includes/head.php";
-include "includes/header.php";
-
 
 $currentQuestionIndex = 0;
 
@@ -44,6 +37,9 @@ $questions = getQuestions();
 echo "<pre>";
 print_r($_SESSION['questions']);
 echo "</pre>";
+
+include "includes/head.php";
+include "includes/header.php";
 ?>
 
 <div>
@@ -70,22 +66,25 @@ echo "</pre>";
             <?php
                     $answers = $questions[$currentQuestionIndex]['answers'];
                     $Type = $questions[$currentQuestionIndex]['Type'];
+                    $maxPoints = 0;
 
                     for ($a = 0; $a < count($answers); $a++) {
                         echo '<div class="form-check">';
                         $isCorrect = $answers[$a]['IsCorrectAnswer'];
                         
                         if ($Type == 'Multiple') {
-                        echo '<input class="form-check-input" type="checkbox" value="' . $isCorrect . '" id="i-' . $a . '">';
+                        echo '<input class="form-check-input" type="checkbox" value="' . $isCorrect . '" id="a-' . $a . '">';
                         }
                         else {
-                            echo '<input class="form-check-input" name="somename" type="radio" value="' . $isCorrect . '" id="i-' . $a . '">';
+                            echo '<input class="form-check-input" name="somename" type="radio" value="' . $isCorrect . '" id="a-' . $a . '">';
                         }    
+
+                        $maxPoints += $isCorrect; // same as: $maxPoints = $maxPoints + $isCorrect
                             
-                            echo '<label class="form-check-label" for="i-' . $a . '">';
-                            echo $answers[$a]['Text'];
-                            echo '</label>';
-                            echo '</div>';
+                        echo '<label class="form-check-label" for="a-' . $a . '">';
+                        echo $answers[$a]['Text'];
+                        echo '</label>';
+                        echo '</div>';
                     }
                 
             ?>
@@ -96,9 +95,8 @@ echo "</pre>";
                         <div class="col-10">
                             <div>
                                 <input type="hidden" name="lastQuestionIndex" value="<?php echo $currentQuestionIndex; ?>">
-                                <input type="hidden" name="nextQuestionIndex" value="<?php $currentQuestionIndex++;
-                                echo $currentQuestionIndex; ?>">
-                                <!--<p id="validation-warning" class="warning"></p>-->
+                                <input type="hidden" name="nextQuestionIndex" value="<?php $currentQuestionIndex++; echo $currentQuestionIndex; ?>">
+                                <input type="hidden" name="maxPoints" value="<'php echo $maxPoints; ?>">
                                 <button type="submit" class="btn btn-outline-primary buttons">Weiter...</button>
                             </div>
                         </div>

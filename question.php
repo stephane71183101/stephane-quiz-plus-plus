@@ -61,8 +61,13 @@ echo "</pre>";
         </div>
     </div>
     <div class="container text-secondary h6 mt-3">
-        <form method="post">
-            <?php
+    <form 
+        <?php 
+            if ($currentQuestionIndex + 1 == count($questions)) echo 'action="result.php"';
+        ?> 
+    method="post">            
+    
+    <?php
                 $answers = $questions[$currentQuestionIndex]['answers'];
                 $Type = $questions[$currentQuestionIndex]['Type'];
 

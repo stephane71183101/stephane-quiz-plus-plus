@@ -61,36 +61,33 @@ echo "</pre>";
         </div>
     </div>
     <div class="container text-secondary h6 mt-3">
-    <form 
-        <?php 
-            if ($currentQuestionIndex + 1 == count($questions)) echo 'action="result.php"';
-        ?> 
-    method="post">            
-    
-    <?php
-                $answers = $questions[$currentQuestionIndex]['answers'];
-                $Type = $questions[$currentQuestionIndex]['Type'];
-
-                for ($a = 0; $a < count($answers); $a++) {
-                    echo '<div class="form-check">';
-                    $isCorrect = $answers[$a]['IsCorrectAnswer'];
-                    
-                    if ($Type == 'Multiple') {
-                    // Multiple Choice (checkbox)
-                    echo '<input class="form-check-input" type="checkbox" value="' . $isCorrect . '" id="i-' . $a . '">';
-
-                    }
-                    else {
-                        // Single choice (radio)
-                        echo '<input class="form-check-input" type="radio" value="' . $isCorrect . '" id="i-' . $a . '">';
-                    }    
-                        
-                        echo '<label class="form-check-label" for="i-' . $a . '">';
-                        echo $answers[$a]['Text'];
-                        echo '</label>';
-                        echo '</div>';
-                }
+        <form 
+            <?php 
+                if ($currentQuestionIndex + 1 == count($questions)) echo 'action="result.php"';
+            ?> 
+            method="post">            
             
+            <?php
+                    $answers = $questions[$currentQuestionIndex]['answers'];
+                    $Type = $questions[$currentQuestionIndex]['Type'];
+
+                    for ($a = 0; $a < count($answers); $a++) {
+                        echo '<div class="form-check">';
+                        $isCorrect = $answers[$a]['IsCorrectAnswer'];
+                        
+                        if ($Type == 'Multiple') {
+                        echo '<input class="form-check-input" type="checkbox" value="' . $isCorrect . '" id="i-' . $a . '">';
+                        }
+                        else {
+                            echo '<input class="form-check-input" type="radio" value="' . $isCorrect . '" id="i-' . $a . '">';
+                        }    
+                            
+                            echo '<label class="form-check-label" for="i-' . $a . '">';
+                            echo $answers[$a]['Text'];
+                            echo '</label>';
+                            echo '</div>';
+                    }
+                
             ?>
                   
                 <div class="container pt-3">

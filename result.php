@@ -4,7 +4,7 @@
 
 //
 if (isset($_SESSION['achievedPointsList'])) {
-    $achievedPointsList = $_SESSION
+    $achievedPointsList = $_SESSION;
 }
 
 

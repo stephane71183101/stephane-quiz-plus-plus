@@ -79,7 +79,7 @@ echo "</pre>";
                         echo '<input class="form-check-input" type="checkbox" value="' . $isCorrect . '" id="i-' . $a . '">';
                         }
                         else {
-                            echo '<input class="form-check-input" type="radio" value="' . $isCorrect . '" id="i-' . $a . '">';
+                            echo '<input class="form-check-input" name="somename" type="radio" value="' . $isCorrect . '" id="i-' . $a . '">';
                         }    
                             
                             echo '<label class="form-check-label" for="i-' . $a . '">';

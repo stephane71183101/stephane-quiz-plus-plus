@@ -21,7 +21,7 @@ foreach ($achievedPointsList as $key => $value) {
 $maxTotal = 0;
 
 foreach ($maxPointsList as $key => $value) {
-    $maxTotal += intvall($value); // same as: $maxTotal = $maxTotal + intval($value);
+    $maxTotal += intval($value); // same as: $maxTotal = $maxTotal + intval($value);
 }
 
 // Depending on the achieved points, set a feedback exclamation.

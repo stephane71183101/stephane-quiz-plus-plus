@@ -23,22 +23,23 @@ foreach ($achievedPointsList as $key => $value) {
     $total += $value; // same as: $total = $total + $value;
 }
 
-$maxtotal = 0;
+$maxTotal = 0;
 
 foreach ($maxPointsList as $key => $value) {
-    $maxtotal += $value; // same as: $maxtotal = $maxtotal + $value;
+    $maxTotal += $value; // same as: $maxTotal = $maxTotal + $value;
 }
 
 // Depending on the achieved points, set a feedback exclamation.
-if ($total / $maxtotal >= 0.8) {
+if ($total / $maxTotal >= 0.8) {
     $exclamation = "Ausgezeichnet";
 }
-else if ($total / $maxtotal >= 0.4) {
+else if ($total / $maxTotal >= 0.4) {
     $exclamation = "Gut";
 }
 else {
     $exclamation = "Kopf hoch";
 }
+
 ?>
 
 <div>
@@ -47,7 +48,7 @@ else {
             <div class="row">exclamation
                 <div class="col-1"></div>
                 <div class="col-10">
-                    <h4 id="questionTitle"><?php echo $exclamation; ?>, dein Ergebnis ist <?php echo $total; ?> von <?php echo $maxtotal; ?> Punkte!</h4>
+                    <h4 id="questionTitle"><?php echo $exclamation; ?>, dein Ergebnis ist <?php echo $total; ?> von <?php echo $maxTotal; ?> Punkte!</h4>
                 </div>
                 <div class="col-1"></div>
             </div>

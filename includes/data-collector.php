@@ -30,16 +30,17 @@ if  (isset($_POST['lastQuestionIndex'])) {
     }
 
     //
-    $_SESSION['achievedPointsList'][$questionKey] = $achievedPOints;
+    $_SESSION['achievedPointsList'][$questionKey] = $achievedPoints;
 
     // Max points -----------------------------------------
-    $maxPoints = intvall($_POST['maxPOints']);
+    $maxPoints = intval($_POST['maxPoints']);
 
     // Make sure the list of all max points exists in the $_SESSION.
     if (!isset($_SESSION['maxPointsList'])) {
         $_SESSION['maxPointsList'] = array();
     }
 
+    $_SESSION['maxPointsList'][$questionKey] = $maxPoints;
 
 }
 

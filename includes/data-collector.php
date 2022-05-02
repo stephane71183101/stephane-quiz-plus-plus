@@ -3,7 +3,7 @@ session_start();
 
 if  (isset($_POST['lastQuestionIndex'])) {
     // Get the index (string) of the last question.
-    $lastQuestionIndex = $_POST['lastQuestionIndex']; // ohne intvall()
+    $lastQuestionIndex = $_POST['lastQuestionIndex']; // ohne intval()
 
     // And create the key for that question.
     $questionKey = 'q-' . $lastQuestionIndex;
@@ -29,7 +29,9 @@ if  (isset($_POST['lastQuestionIndex'])) {
         $_SESSION['achievedPointsList'] = array();
     }
 
-    //
+    // Put the achieved points into the list, using a 'q-' headed key,
+    // wich identifies the question in the list.
+    
     $_SESSION['achievedPointsList'][$questionKey] = $achievedPoints;
 
     // Max points -----------------------------------------
@@ -41,9 +43,7 @@ if  (isset($_POST['lastQuestionIndex'])) {
     }
 
     $_SESSION['maxPointsList'][$questionKey] = $maxPoints;
-
 }
-
 
 //Devonly Gib die aktuelle $_SESSION in die Seite aus.
 //echo '<pre>';

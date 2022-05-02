@@ -1,12 +1,13 @@
-<?php include "includes/data-collector.php"; ?>
-<?php include "includes/head.php"; ?>
-<?php include "includes/header.php"; 
+<?php include "includes/data-collector.php"; 
+include "includes/head.php"; 
+include "includes/header.php"; 
 
-//
+// Get the lists with the achieved and maximum points (listed per question).
 if (isset($_SESSION['achievedPointsList'])) {
     $achievedPointsList = $_SESSION['achievedPointsList'];
 }
 else {
+    // Lands here if result.php is opened in the browser before visiting any question before.
     $achievedPointsList = array();
 }
 if (isset($_SESSION['maxPointsList'])) {
@@ -19,27 +20,20 @@ else {
 $total = 0;
 
 foreach ($achievedPointsList as $key => $value) {
-    $total += intval($value); // same as: $total = $total + intval($value);
+    $total += $value; // same as: $total = $total + $value;
 }
 
-$total = 0;
-
-foreach ($achievedPointsList as $key => $value) {
-    $total += $value;
-}
-
-// Get total of maximum points.
-$maxTotal = 0;
+$maxtotal = 0;
 
 foreach ($maxPointsList as $key => $value) {
-    $maxTotal += $value; // same as: $maxTotal = $maxTotal + $value;
+    $maxtotal += $value; // same as: $maxtotal = $maxtotal + $value;
 }
 
 // Depending on the achieved points, set a feedback exclamation.
-if ($total / $maxTotal >= 0.8) {
+if ($total / $maxtotal >= 0.8) {
     $exclamation = "Ausgezeichnet";
 }
-else if ($total / $maxTotal >= 0.4) {
+else if ($total / $maxtotal >= 0.4) {
     $exclamation = "Gut";
 }
 else {
@@ -50,10 +44,10 @@ else {
 <div>
     <div class="container-fluid text-secondary pt-3 pb-3">
         <div class="container">
-            <div class="row">
+            <div class="row">exclamation
                 <div class="col-1"></div>
                 <div class="col-10">
-                    <h4 id="questionTitle"><?php echo $exclamation; ?>, dein Ergebnis ist <?php echo $total; ?> von <?php echo $maxTotal; ?> Punkte!</h4>
+                    <h4 id="questionTitle"><?php echo $exclamation; ?>, dein Ergebnis ist <?php echo $total; ?> von <?php echo $maxtotal; ?> Punkte!</h4>
                 </div>
                 <div class="col-1"></div>
             </div>

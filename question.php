@@ -34,9 +34,9 @@ $questions = getQuestions();
 // And put questions and answers data int PHP session.
 // $_SESSION['questions'] = $questions;
 
-echo "<pre>";
-print_r($_SESSION['questions']);
-echo "</pre>";
+//echo "<pre>";
+//print_r($_SESSION['questions']);
+//echo "</pre>";
 
 include "includes/head.php";
 include "includes/header.php";
@@ -73,10 +73,10 @@ include "includes/header.php";
                         $isCorrect = $answers[$a]['IsCorrectAnswer'];
                         
                         if ($Type == 'Multiple') {
-                        echo '<input class="form-check-input" type="checkbox" value="' . $isCorrect . '" id="a-' . $a . '">';
+                            echo '<input class="form-check-input" type="checkbox" value="' . $isCorrect . '" name="a-' . $a . '" id="a-' . $a . '">';
                         }
                         else {
-                            echo '<input class="form-check-input" name="somename" type="radio" value="' . $isCorrect . '" id="a-' . $a . '">';
+                            echo '<input class="form-check-input" name="a-0" type="radio" value="' . $isCorrect . '" id="a-' . $a . '">';
                         }    
 
                         $maxPoints += $isCorrect; // same as: $maxPoints = $maxPoints + $isCorrect
@@ -96,7 +96,7 @@ include "includes/header.php";
                             <div>
                                 <input type="hidden" name="lastQuestionIndex" value="<?php echo $currentQuestionIndex; ?>">
                                 <input type="hidden" name="nextQuestionIndex" value="<?php $currentQuestionIndex++; echo $currentQuestionIndex; ?>">
-                                <input type="hidden" name="maxPoints" value="<'php echo $maxPoints; ?>">
+                                <input type="hidden" name="maxPoints" value="<?php echo $maxPoints; ?>">
                                 <button type="submit" class="btn btn-outline-primary buttons">Weiter...</button>
                             </div>
                         </div>

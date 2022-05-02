@@ -31,7 +31,7 @@ if  (isset($_POST['lastQuestionIndex'])) {
 
     // Put the achieved points into the list, using a 'q-' headed key,
     // wich identifies the question in the list.
-    
+
     $_SESSION['achievedPointsList'][$questionKey] = $achievedPoints;
 
     // Max points -----------------------------------------

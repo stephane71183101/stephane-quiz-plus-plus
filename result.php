@@ -2,6 +2,8 @@
 include "includes/head.php"; 
 include "includes/header.php"; 
 
+
+
 // Get the lists with the achieved and maximum points (listed per question).
 if (isset($_SESSION['achievedPointsList'])) {
     $achievedPointsList = $_SESSION['achievedPointsList'];
@@ -39,13 +41,12 @@ else if ($total / $maxTotal >= 0.4) {
 else {
     $exclamation = "Kopf hoch";
 }
-
 ?>
 
 <div>
     <div class="container-fluid text-secondary pt-3 pb-3">
         <div class="container">
-            <div class="row">exclamation
+            <div class="row">
                 <div class="col-1"></div>
                 <div class="col-10">
                     <h4 id="questionTitle"><?php echo $exclamation; ?>, dein Ergebnis ist <?php echo $total; ?> von <?php echo $maxTotal; ?> Punkte!</h4>
@@ -55,13 +56,13 @@ else {
         </div>
     </div>
     <div class="container text-secondary h6 mt-3">
-        <form>       
+        <form action="index.php">       
             <div class="row">
                 <div class="container">
                     <div class="row">
                         <div class="col-1"></div>
                         <div class="col-10">
-                            <button type="submit" href="index.php" class="btn btn-outline-primary buttons">Neu spielen!</button>
+                            <button type="submit" class="btn btn-outline-primary buttons">Neu spielen!</button>
                         </div>
                         <div class="col-1"></div>
                     </div>
